@@ -1,9 +1,5 @@
-var axios = require('axios');
-var path = require('path');
+var path = require("path");
 let chai = require('chai');
-let sinon = require('sinon');
-let faker = require('faker');
-
 let chaiHttp = require('chai-http');
 //let app = require('../../dist/dev/app.server');
 let should = chai.should();
@@ -26,7 +22,6 @@ let newNlu = { name: 'nlu-test-borrable', culture: 'es-es' }
 let newEntity = { name: 'entity-test-borrable' }
 let newIntent = { name: 'intent-test-borrable' }
 let utterance={appId: "17d69bef-83be-4422-94cb-0b37acbec7d0", intentId: "55a26838-9058-4528-a8f0-d0d0e850dfcf", text: "aeropuerto", utteranceId: "3534965496"};
-
 var values = {
     user: vccUser,
     //user: vccUser,
@@ -43,11 +38,8 @@ function ImportTest(name, path) {
 }
 
 exports.values = values;
-exports.axios = axios;
 exports.chai = chai;
 exports.should = should;
-exports.faker = faker;
-exports.sinon = sinon;
 exports.clientUrl = clientUrl;
 exports.serverUrl = serverUrl;
 exports.clientSrcPath = clientSrcPath;
