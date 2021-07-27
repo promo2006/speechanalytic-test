@@ -3,6 +3,7 @@ var common = require("./common");
 
 describe('Launching unit tests', () => {
     common.importTest('Server>shared>arrays.shared', './unit/server/shared/arrays.shared.test.js');
+    common.importTest('Server>implementation>audio-transfer.implementation', './unit/server/implementation/audio-transfer.implementation.test.js');
     common.importTest('Server>implementation>transcriptions.implementation', './unit/server/implementation/transcriptions.implementation.test.js');
 });
 

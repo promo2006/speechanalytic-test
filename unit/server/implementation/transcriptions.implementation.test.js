@@ -105,12 +105,12 @@ const getDictionaryWordSoundLikesStub = sinon.stub(mssql.MSSql, 'GetDictionaryWo
 describe('UploadAudio', () => {
     let sandbox = null;
     let interaction = null; 
-    let currentQueueId = 'queue::demo';
+    let currentQueueId = 'queue::test';
     let executionCode = '1626965556676';
 
     beforeEach(() => {
         sandbox = sinon.createSandbox();
-        interaction = { vcc : 'demo', dictionaryId : 'dictionaryDemo', environmentType : 'allegro', fileName: 'audio-demo-wav.wav', language: 'es' }; 
+        interaction = { vcc : 'test', dictionaryId : 'dictionaryDemo', environmentType : 'allegro', fileName: 'audio-test-stereo-wav.wav', language: 'es' }; 
     });
     afterEach(() => sandbox.restore());
 
@@ -122,16 +122,19 @@ describe('UploadAudio', () => {
 
         return transcriptionsImpl.UploadAudio(interaction, currentQueueId, executionCode)
         .then(result => {
+            //console.log(result);
             // Verificamos que tenga el status de éxito de la función
             result.status.should.to.equal(3);
-            result.jobId.should.to.be.a('number', 99999);
-            result.errorFunction.should.to.be.a('null');
-            result.errorMessage.should.to.be.a('null');
-            result.errorDetail.should.to.be.a('null');
-        })
-        .catch(error => {
-            console.log('ERROR', error)
+            result.jobId.should.to.equal(99999);
+            should.equal(result.errorFunction, null);
+            should.equal(result.errorMessage, null);
+            should.equal(result.errorDetail, null);
+            //result.jobId.should.to.be.a('number', 99999);
+            //result.errorFunction.should.to.be.a('null');
+            //result.errorMessage.should.to.be.a('null');
+            //result.errorDetail.should.to.be.a('null');
         });
+        // No colocamos catch porque provocaría un falso positivo en el test
     });
 
     it('UploadAudio: Getting Reject from fake Speechmatics', () => {
@@ -143,20 +146,18 @@ describe('UploadAudio', () => {
             //console.log(result);
             // Verificamos que tenga el status de error de la función
             result.status.should.to.equal(-3);
-            result.errorFunction.should.to.be.a('string', 'UploadAudio');
-            result.errorMessage.should.to.be.a('string', 'UPLOAD_ERROR');
-            result.errorDetail.should.to.be.a('string', 'Failed at debug.');
-        })
-        .catch(error => {
-            console.log('ERROR', error)
+            result.errorFunction.should.to.equal('UploadAudio');
+            result.errorMessage.should.to.equal('UPLOAD_ERROR');
+            result.errorDetail.should.to.equal('Failed at debug.');
         });
+        // No colocamos catch porque provocaría un falso positivo en el test
     });
 });
 
 // 
 describe('GetDictionaryContent', () => {
-    let interaction = { vcc : 'demo', dictionaryId : 'dictionaryDemo' }; 
-    let currentQueueId = 'queue::demo';
+    let interaction = { vcc : 'test', dictionaryId : 'dictionaryDemo' }; 
+    let currentQueueId = 'queue::test';
     let executionCode = '1626965556676';
 
     it('GetDictionaryContent', () => {
@@ -168,6 +169,7 @@ describe('GetDictionaryContent', () => {
             getDictionaryWordSoundLikesStub.called.should.to.be.true;
             // Verificamos que retorne la cantidad de items en el stub de DictionaryWords
             result.should.to.have.lengthOf(stubDictionaryWordsStubValue.length, `Should be ${stubDictionaryWordsStubValue.length} dictionaryWord items, instead were found ${result.length}.`);
-        }); // no catch, it'll figure it out since the promise is rejected
+        }); 
+        // No colocamos catch porque provocaría un falso positivo en el test
     });
 });
