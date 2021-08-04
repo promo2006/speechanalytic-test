@@ -6,7 +6,7 @@ let serverSrcPath = common.serverSrcPath;
 
 let arraysShared = require(`${serverSrcPath}/shared/arrays.shared`);
 
-var simpleArray = ['d', 'b', 'a', 'c', 'e', 'a']
+var simpleArray = ['d', 'b', 'a', 'c', 'e', 'a'];
 var oldObjectArray = [
     {customId: 1, customValue: 'a'}, 
     {customId: 2, customValue: 'b'},
