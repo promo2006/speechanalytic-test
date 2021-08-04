@@ -1,4 +1,4 @@
-let common = require("../common");
+let common = require("../../../common");
 let chai = common.chai;
 let should = common.should;
 let values = common.values;

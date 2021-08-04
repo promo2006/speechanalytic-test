@@ -1,4 +1,4 @@
-let common = require("../common");
+let common = require("../../../common");
 let chai = common.chai;
 let should = common.should;
 let values = common.values;
@@ -82,8 +82,8 @@ describe('NLUService: GetAll, Create, GetByName', () => {
 });
 
 // Ejecutamos los test de Entity e Intent antes de eliminar el nlu
-common.importTest('EntityService works', './integration/entity.test.js');
-common.importTest('IntentService works', './integration/intent.test.js');
+common.importTest('EntityService works', './integration/server/services/entity.service.test.js');
+common.importTest('IntentService works', './integration/server/services/intent.service.test.js');
 
 describe('NLUService: Delete', () => {
     it('[200] OK: Delete created NLU', (done) => {

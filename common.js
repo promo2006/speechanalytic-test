@@ -7,6 +7,7 @@ let faker = require('faker');
 let chaiHttp = require('chai-http');
 //let app = require('../../dist/dev/app.server');
 let should = chai.should();
+let expect = chai.expect();
 
 chai.use(chaiHttp);
 
@@ -45,6 +46,7 @@ function ImportTest(name, path) {
 exports.values = values;
 exports.axios = axios;
 exports.chai = chai;
+exports.expect = expect;
 exports.should = should;
 exports.faker = faker;
 exports.sinon = sinon;
