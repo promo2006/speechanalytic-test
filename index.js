@@ -27,8 +27,7 @@ describe('Launching integration tests', () => {
     
     after(() => {
         console.log("after all tests");
-    });
-    */
+    });*/
     //common.importTest('AuthService works', './integration/auth.test.js');
     // common.importTest('SocketIO works', './integration/io.test.js');
     // common.importTest('Delete utterances works', './integration/server/services/utterance.service.test.js');
