@@ -48,7 +48,7 @@ describe('SimplePostRequest', () => {
     it.only('Testing https to http request', () => {
         return requestShared.SimplePostRequest(data)
         .then(result => {
-            console.log(result);
+            //console.log(result);
             result.query_id.should.to.be.a('string');
             result.total_results.should.to.be.a('number');
             result.results.should.to.be.a('array');
