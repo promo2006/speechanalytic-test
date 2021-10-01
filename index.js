@@ -6,21 +6,26 @@ var common = require("./common");
 
 let serverSrcPath = common.serverSrcPath;
 let mssqlInit = require( `${serverSrcPath}/db/mssql.init`);
+let redisInit = require( `${serverSrcPath}/db/redis.init`);
 
 describe('Launching unit tests', () => {
     before(() => {
-        // Para probar funciones que consultan a bd necesitamos iniciar la conexión
-        return mssqlInit.MsSqlInit(app)
-        .then(_ => { });
+        // Inicializo conexión a Redis.
+		return redisInit.RedisInit(app)
+        .then(_ => { 
+            // Para probar funciones que consultan a bd necesitamos iniciar la conexión
+            return mssqlInit.MsSqlInit(app)
+        });
     });
 
     //common.importTest('Server>shared>arrays.shared', './unit/server/shared/arrays.shared.test.js');
     //common.importTest('Server>shared>request.shared', './unit/server/shared/request.shared.test.js');
     //common.importTest('Server>implementation>audio-transfer.implementation', './unit/server/implementation/audio-transfer.implementation.test.js');
+    common.importTest('Server>implementation>rasa-service.implementation', './unit/server/implementation/rasa-service.implementation.test.js');
     //common.importTest('Server>implementation>semantic-query.implementation', './unit/server/implementation/semantic-query.implementation.test.js');
     //common.importTest('Server>implementation>transcriptions.implementation', './unit/server/implementation/transcriptions.implementation.test.js');
 
-    common.importTest('Server>services>allegro.service', './unit/server/services/allegro.service.test.js');
+    //common.importTest('Server>services>allegro.service', './unit/server/services/allegro.service.test.js');
     //common.importTest('Server>services>linguistic.service', './unit/server/services/linguistic.service.test.js');
 });
 
