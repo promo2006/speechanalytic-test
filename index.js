@@ -20,8 +20,8 @@ describe('Launching unit tests', () => {
 
     //common.importTest('Server>shared>arrays.shared', './unit/server/shared/arrays.shared.test.js');
     //common.importTest('Server>shared>request.shared', './unit/server/shared/request.shared.test.js');
-    //common.importTest('Server>implementation>audio-transfer.implementation', './unit/server/implementation/audio-transfer.implementation.test.js');
-    common.importTest('Server>implementation>rasa-service.implementation', './unit/server/implementation/rasa-service.implementation.test.js');
+    common.importTest('Server>implementation>audio-transfer.implementation', './unit/server/implementation/audio-transfer.implementation.test.js');
+    //common.importTest('Server>implementation>rasa-service.implementation', './unit/server/implementation/rasa-service.implementation.test.js');
     //common.importTest('Server>implementation>semantic-query.implementation', './unit/server/implementation/semantic-query.implementation.test.js');
     //common.importTest('Server>implementation>transcriptions.implementation', './unit/server/implementation/transcriptions.implementation.test.js');
 

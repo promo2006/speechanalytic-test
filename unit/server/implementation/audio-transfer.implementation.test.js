@@ -35,6 +35,60 @@ const diarizationNlu01StubValue = {
 // 
 const getNLUByAppIdStub = sinon.stub(mssql.MSSql, 'GetNLUByAppId');
 
+//
+describe('FindLocalTranscriptionJSON', () => {
+    it('FindLocalTranscriptionJSON: Finding an existing json', () => {
+        let vcc = 'collegeocc';
+        let interactionId = '{36a35a0a-85a9-11eb-b0eb-94c5ba26a403}';
+        let section = 0;
+        let part = 2;
+
+        return audioTransferImpl.FindLocalTranscriptionJSON(vcc, interactionId, section, part)
+        .then(result => {
+            result.should.to.be.a('boolean');
+            result.should.to.equal(true);
+        });
+        // No colocamos catch porque provocaría un falso positivo en el test
+    });
+
+    it('FindLocalTranscriptionJSON: Finding a non existing json', () => {
+        let vcc = 'collegeocc';
+        let interactionId = '';
+        let section = 100;
+        let part = 100;
+
+        return audioTransferImpl.FindLocalTranscriptionJSON(vcc, interactionId, section, part)
+        .then(result => {
+            result.should.to.be.a('boolean');
+            result.should.to.equal(false);
+        });
+        // No colocamos catch porque provocaría un falso positivo en el test
+    });
+});
+
+//
+describe.only('ResumeTranscription', () => {
+    it('ResumeTranscription: Resuming an interaction with json', () => {
+        let storage = 'demo';
+        let currentQueueId = 'queue::test';
+        let processInteraction = {
+            vcc : 'collegeocc',
+            id : '{36a35a0a-85a9-11eb-b0eb-94c5ba26a403}',
+            section : 0,
+            part : 2,
+            isDiariced : true
+        }
+
+        return audioTransferImpl.ResumeTranscription(storage, currentQueueId, processInteraction)
+        .then(result => {
+            console.log(result);
+            //result.should.to.be.a('boolean');
+            //result.should.to.equal(true);
+        });
+        // No colocamos catch porque provocaría un falso positivo en el test
+    });
+});
+
 // 
 describe('GetAudioInfo', () => {
     let sandbox = null;

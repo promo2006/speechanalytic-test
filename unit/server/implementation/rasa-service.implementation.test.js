@@ -13,7 +13,7 @@ let rasaServiceImpl = new rasaServiceImplementation.RASAServiceImplementation();
 
 // 
 describe('AddApp', () => {
-    it('AddApp: Creating a rasa nlu', () => {
+    it.skip('AddApp: Creating a rasa nlu', () => {
         let nlu ={
             culture: values.newNlu.culture, 
             description: "test-1323", 
@@ -45,10 +45,57 @@ describe('AddApp', () => {
     });
 });
 
+//
+describe.skip('TrainApp', () => {
+    it('TrainApp: Training a rasa nlu', () => {
+        let nluAppId  = 'occ_test::saludo_occ_test';
+
+        return rasaServiceImpl.TrainApp(null, null, nluAppId)
+        .then(result => {
+            console.log(result);
+            // Verificamos que tenga el status de éxito de la función
+            result.status.should.to.equal('UpToDate');
+            result.statusId.should.to.equal(2);
+        });
+        // No colocamos catch porque provocaría un falso positivo en el test
+    })
+    .timeout(180000);
+});
+
+//
+describe.skip('PublishApp', () => {
+    it('PublishApp: Launching a rasa nlu', () => {
+        let nluAppId  = 'occ_test::saludo_occ_test';
+
+        return rasaServiceImpl.PublishApp(null, null, nluAppId, true)
+        .then(result => {
+            console.log(result);
+            result.should.to.be.a('number');
+        });
+        // No colocamos catch porque provocaría un falso positivo en el test
+    })
+    .timeout(180000);
+});
+
+//
+describe('ModelQuery', () => {
+    it('ModelQuery: Evaluating a text', () => {
+        let nluAppId  = 'occ_test::saludo_occ_test';
+        let queryText = 'Hola, buenos dias a todos';
+
+        return rasaServiceImpl.ModelQuery(null, null, nluAppId, queryText, null, null)
+        .then(result => {
+            console.log(result);
+            //result.should.to.be.a('number');
+        });
+        // No colocamos catch porque provocaría un falso positivo en el test
+    });
+});
+
 // 
 describe('GetAppsList', () => {
     // 
-    it('GetAppsList: Getting all nlus', () => {
+    it.skip('GetAppsList: Getting all nlus', () => {
         return rasaServiceImpl.GetAppsList(null, null)
         .then(result => {
             console.log(result);
