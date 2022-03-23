@@ -90,3 +90,18 @@ describe('SortObjectArrayByShuffle', () => {
         JSON.stringify(result).should.not.equal(JSON.stringify(oldObjectArray), 'Should be different');
     });
 });
+
+//
+describe.only('Michi', () => {
+    it('Michi', () => {
+        var result = arraysShared.Michi(1815);
+        console.log(result);
+    });
+});
+
+describe.only('MichiWinner', () => {
+    it('MichiWinner', () => {
+        var result = arraysShared.MichiWinner([2, 1, 1, 1, 2, 2, 1, 2, 0]);
+        console.log(result);
+    });
+});

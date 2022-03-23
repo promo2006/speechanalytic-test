@@ -14,13 +14,15 @@ describe('Launching unit tests', () => {
 		return redisInit.RedisInit(app)
         .then(_ => { 
             // Para probar funciones que consultan a bd necesitamos iniciar la conexión
-            return mssqlInit.MsSqlInit(app)
+            //return mssqlInit.MsSqlInit(app)
         });
     });
 
-    //common.importTest('Server>shared>arrays.shared', './unit/server/shared/arrays.shared.test.js');
+    common.importTest('Server>shared>arrays.shared', './unit/server/shared/arrays.shared.test.js');
     //common.importTest('Server>shared>request.shared', './unit/server/shared/request.shared.test.js');
-    common.importTest('Server>implementation>audio-transfer.implementation', './unit/server/implementation/audio-transfer.implementation.test.js');
+    //common.importTest('Server>implementation>audio-transfer.implementation', './unit/server/implementation/audio-transfer.implementation.test.js');
+    //common.importTest('Server>implementation>cleaner.implementation', './unit/server/implementation/cleaner.implementation.test.js');
+    //common.importTest('Server>implementation>batch-schedule.implementation', './unit/server/implementation/batch-schedule.implementation.test.js');
     //common.importTest('Server>implementation>rasa-service.implementation', './unit/server/implementation/rasa-service.implementation.test.js');
     //common.importTest('Server>implementation>semantic-query.implementation', './unit/server/implementation/semantic-query.implementation.test.js');
     //common.importTest('Server>implementation>transcriptions.implementation', './unit/server/implementation/transcriptions.implementation.test.js');
